@@ -19,13 +19,14 @@ OPENROUTER_MODELS: dict[str, str] = {
 }
 
 GEMINI_MODELS: dict[str, str] = {
-    "tutor":   "gemini-2.5-flash",
-    "rubric":  "gemini-2.5-flash",
-    "outline": "gemini-2.5-flash",
-    "ocr":     "gemini-2.5-flash",
-    "extract": "gemini-2.5-flash",
-    "plan":    "gemini-2.5-flash",
-    "quiz":    "gemini-2.5-flash",
+    "tutor":   "gemini-3.6-flash",
+    "rubric":  "gemini-3.6-flash",
+    "outline": "gemini-3.6-flash",
+    "ocr":     "gemini-3.6-flash",
+    "extract": "gemini-3.6-flash",
+    "plan":    "gemini-3.6-flash",
+    "quiz":    "gemini-3.6-flash",
+    "polish":  "gemini-3.6-flash",
 }
 
 _FIXTURES_DIR = Path(__file__).parent / "tests" / "fixtures" / "llm"
@@ -65,7 +66,7 @@ def _client_and_model_for(task: str, user: str | None) -> tuple[OpenAI, str]:
             base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
             max_retries=2,
         )
-        model = GEMINI_MODELS.get(task, "gemini-2.0-flash")
+        model = GEMINI_MODELS.get(task, "gemini-3.6-flash")
     else:
         client = OpenAI(
             api_key=key,
