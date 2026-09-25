@@ -41,7 +41,7 @@ class NoAPIKey(Exception):
 
 
 def _is_google_key(key: str) -> bool:
-    return key.startswith("AQ.") or key.startswith("AIza") or bool(os.getenv("GEMINI_API_KEY"))
+    return key.startswith("AQ.") or key.startswith("AIza")
 
 
 def _client_and_model_for(task: str, user: str | None) -> tuple[OpenAI, str]:
