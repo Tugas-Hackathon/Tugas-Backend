@@ -17,9 +17,24 @@ from settings import router as settings_router
 
 app = FastAPI(title="Tugas API")
 
+_cors_env = os.getenv("CORS_ORIGIN", "")
+allowed_origins = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://sisystem.org",
+    "https://www.sisystem.org",
+    "https://tugasos.vercel.app",
+]
+if _cors_env:
+    for o in _cors_env.split(","):
+        o = o.strip()
+        if o and o not in allowed_origins:
+            allowed_origins.append(o)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[os.getenv("CORS_ORIGIN", "http://localhost:5173")],
+    allow_origins=allowed_origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
